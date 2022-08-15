@@ -26,10 +26,6 @@ export const POSTS = [
         profile_picture: USERS[1].image,
         comments: [
             {
-                user: 'sugashaw',
-                comment: 'Wow! It\'s amazing!'
-            },
-            {
                 user: 'aplist',
                 comment: 'Wow! You have very beutiful animal!'
             }
@@ -41,16 +37,7 @@ export const POSTS = [
         likes: 18041,
         caption: 'Beautiful animal for you',
         profile_picture: USERS[2].image,
-        comments: [
-            {
-                user: 'sugashaw',
-                comment: 'Wow! It\'s amazing!'
-            },
-            {
-                user: 'aplist',
-                comment: 'Wow! You have very beutiful animal!'
-            }
-        ]
+        comments: []
     },
     {
         imageUrl: 'https://funart.pro/uploads/posts/2021-07/1625860503_3-funart-pro-p-kamennaya-kunitsa-zhivotnie-krasivo-foto-4.jpg',
