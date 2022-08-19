@@ -1,23 +1,32 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { firebase } from '../../firebase';
 
+const handleSignout = async () => {
+    try {
+        await firebase.auth().signOut();
+        console.log('Signed Out Succefully');
+    } catch (error) {
+        console.log(error);
+    }
+};
 const Header = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSignout}>
                 <Image
                     style={styles.logo}
-                    source={require("../../assets/82abee4b6db4025c07209adec0d62acd.png")}
+                    source={require('../../assets/82abee4b6db4025c07209adec0d62acd.png')}
                 />
             </TouchableOpacity>
             <View style={styles.iconContainer}>
                 <TouchableOpacity
-                    onPress={() => navigation.push("NewPostScreen")}
+                    onPress={() => navigation.push('NewPostScreen')}
                 >
                     <Image
                         style={styles.icon}
                         source={{
-                            uri: "https://img.icons8.com/fluency-systems-regular/60/ffffff/plus-2-math.png",
+                            uri: 'https://img.icons8.com/fluency-systems-regular/60/ffffff/plus-2-math.png',
                         }}
                     />
                 </TouchableOpacity>
@@ -25,7 +34,7 @@ const Header = ({ navigation }) => {
                     <Image
                         style={styles.icon}
                         source={{
-                            uri: "https://img.icons8.com/fluency-systems-regular/60/ffffff/like--v1.png",
+                            uri: 'https://img.icons8.com/fluency-systems-regular/60/ffffff/like--v1.png',
                         }}
                     />
                 </TouchableOpacity>
@@ -36,7 +45,7 @@ const Header = ({ navigation }) => {
                     <Image
                         style={styles.icon}
                         source={{
-                            uri: "https://img.icons8.com/fluency-systems-regular/60/ffffff/facebook-messenger.png",
+                            uri: 'https://img.icons8.com/fluency-systems-regular/60/ffffff/facebook-messenger.png',
                         }}
                     />
                 </TouchableOpacity>
@@ -47,40 +56,40 @@ const Header = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
         marginHorizontal: 20,
     },
     iconContainer: {
-        flexDirection: "row",
+        flexDirection: 'row',
     },
     logo: {
         width: 100,
         height: 50,
-        resizeMode: "contain",
+        resizeMode: 'contain',
     },
     icon: {
         width: 30,
         height: 30,
         marginLeft: 10,
-        resizeMode: "contain",
+        resizeMode: 'contain',
     },
     unreadBadge: {
-        backgroundColor: "#FF3250",
-        position: "absolute",
+        backgroundColor: '#FF3250',
+        position: 'absolute',
         left: 20,
         bottom: 18,
         width: 25,
         height: 18,
         borderRadius: 25,
-        alignItems: "center",
-        justifyContent: "center",
+        alignItems: 'center',
+        justifyContent: 'center',
         zIndex: 100,
     },
     unreadBadgeText: {
-        color: "white",
-        fontWeight: "600",
+        color: 'white',
+        fontWeight: '600',
     },
 });
 
