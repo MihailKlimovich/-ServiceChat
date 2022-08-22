@@ -5,7 +5,7 @@ import {
     Platform,
     StatusBar,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/home/Header';
 import Stories from '../components/home/Stories';
 import Post from '../components/home/Post';
@@ -14,17 +14,25 @@ import BottomTabs, { bottomTabIcons } from '../components/home/BottomTabs';
 import { db } from '../firebase';
 
 const HomeScreen = ({ navigation }) => {
+    const [posts, setPosts] = useState([]);
     useEffect(() => {
-        db.collectionGroup('posts').onSnapshot((snapshot) => {
-            console.log(snapshot.docs.map((doc) => doc.data()));
-        });
+        db.collectionGroup('posts')
+            .orderBy('createdAt', 'desc')
+            .onSnapshot((snapshot) => {
+                setPosts(
+                    snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }))
+                );
+            });
     }, []);
     return (
         <SafeAreaView style={styles.container}>
             <Header navigation={navigation} />
             <Stories />
             <ScrollView>
-                {POSTS.map((post, index) => (
+                {posts.map((post, index) => (
                     <Post post={post} key={index} />
                 ))}
             </ScrollView>
